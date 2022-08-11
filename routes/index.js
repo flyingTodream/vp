@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 
 
 /* GET home page. */
-router.get('/getToken', function (req, res, next) {
+router.get('/get', function (req, res, next) {
   const id = uuidv4();
   request({
     url: 'https://www.v2board.cc/api/v1/passport/auth/register',
@@ -31,7 +31,7 @@ router.get('/getToken', function (req, res, next) {
   }, function (error, response) {
     if (error) console.log('error');
     const body = JSON.parse(response.body)
-    res.send(body.data)
+    res.send(`https://v2board.lol/api/v1/client/subscribe?token=${body.data?.token}&flag=clash`)
   });
 });
 
