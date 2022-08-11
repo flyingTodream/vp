@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/getToken', function (req, res, next) {
   const id = uuidv4();
   request({
     url: 'https://www.v2board.cc/api/v1/passport/auth/register',
