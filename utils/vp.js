@@ -1,6 +1,28 @@
 const request = require('request')
 const { v4: uuidv4 } = require('uuid');
 
+function registerEmail() {
+    fetch("https://www.linshi-email.com/api/v1/refreshmessage/16c7aa3c293c17fdc5bca3cfec0a2cf9/q123242343@iubridge.com?t=1661646575003", {
+        "headers": {
+            "accept": "*/*",
+            "accept-language": "en,zh-CN;q=0.9,zh-TW;q=0.8,zh;q=0.7",
+            "cache-control": "no-cache",
+            "pragma": "no-cache",
+            "sec-ch-ua": "\"Chromium\";v=\"104\", \" Not A;Brand\";v=\"99\", \"Google Chrome\";v=\"104\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "cookie": "_ga=GA1.1.1610829161.1661646556; __gads=ID=e8abfca774850e0b-22750a2903d60093:T=1661646556:RT=1661646556:S=ALNI_Mb0UO266UWijv5F5mUjVwFqK6A5hA; __gpi=UID=00000924dcaca614:T=1661646556:RT=1661646556:S=ALNI_MZQXy_Xqge5G41roDsGRf8nea6f5g; _ga_Q67JP8PKT3=GS1.1.1661646556.1.1.1661646574.0.0.0",
+            "Referer": "https://www.linshi-email.com/",
+            "Referrer-Policy": "strict-origin-when-cross-origin"
+        },
+        "body": null,
+        "method": "GET"
+    });
+}
+
 async function register() {
     const id = uuidv4();
     request({

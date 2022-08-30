@@ -2,7 +2,36 @@ var express = require('express');
 var router = express.Router();
 const request = require('request')
 const { v4: uuidv4 } = require('uuid');
+const { registerEmail, sendCode, getCode } = require('../utils/email')
+const { regAcc } = require('../utils/flyint')
 
+router.get('/', async function (req, res) {
+  let timer = null
+  const email = `a${Date.now()}`;
+  const uuid = uuidv4();
+  console.log(email)
+  // 初始化邮箱
+  await registerEmail(email, uuid);
+  // 发送验证码
+  console.log('sending code...')
+  const codeRes = await sendCode(email)
+  console.log('code send success...')
+  if (codeRes) {
+    //
+    timer = setInterval(async () => {
+      const data = await registerEmail(email, uuid);
+      if (data) {
+        const code = await getCode(data)
+        console.log(code)
+        console.log('begining register...')
+        await regAcc(email, code)
+        console.log('register success...')
+        clearInterval(timer)
+      }
+    }, 5000)
+  }
+  res.send(codeRes)
+})
 
 /* GET home page. */
 router.get('/get', function (req, res, next) {
@@ -34,5 +63,7 @@ router.get('/get', function (req, res, next) {
     res.send(`https://v2board.lol/api/v1/client/subscribe?token=${body.data?.token}&flag=clash`)
   });
 });
+
+
 
 module.exports = router;

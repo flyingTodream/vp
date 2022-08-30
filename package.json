@@ -14,5 +14,8 @@
     "morgan": "~1.9.1",
     "request": "^2.88.2",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.12"
   }
 }
